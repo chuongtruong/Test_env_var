@@ -1,0 +1,7 @@
+name: Pull Request Workflow
+on: 
+  pull_request
+
+jobs:
+  manual-approval:
+    uses: .github/workflows/test_aprroval.yaml@main
