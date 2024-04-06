@@ -1,7 +1,14 @@
 name: Pull Request Workflow
-on: 
-  pull_request
+on:
+  pull_request:
+    types: [opened, synchronize]
 
 jobs:
-  manual-approval:
-    uses: .github/workflows/test_aprroval.yaml@main
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Test Approval Workflow
+        uses: .github/workflows/test_aprroval.yaml@Master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.head_ref }}
