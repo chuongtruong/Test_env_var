@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Test Approval Workflow
-        uses: test-aprroval.yaml@Master
+        uses: chuongtruong/Test_env_var/.github/workflows/test-aprroval.yaml@Master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.head_ref }}
