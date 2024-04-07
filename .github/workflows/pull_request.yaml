@@ -4,11 +4,8 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Test Approval Workflow
-        uses: .github/workflows/test_aprroval.yaml@Master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.head_ref }}
+  test_approval:
+    uses: chuongtruong/Test_env_var/.github/workflows/test-approval.yaml@Master
+    with:
+      github_token: ${{ secrets.GITHUB_TOKEN }}
+      branch: ${{ github.head_ref }}
