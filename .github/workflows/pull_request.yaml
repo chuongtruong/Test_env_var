@@ -1,29 +1,11 @@
-name: Pull Request and Simple Manual Workflow - Three Env
+name: Pull Request Workflow
 on:
   pull_request:
     types: [opened, synchronize]
 
 jobs:
-  dev_env:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    environment: dev
-    # Steps represented a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-      - name: Run a script
-        run: |
-          echo "I am running a job in the DEV environment"
-  qa_env:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    environment: qa
-    needs: dev_env
-    # Steps represented a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-      - name: Run a script
-        run: |
-          echo "I am running a job in the QA environment"
+  test_approval:
+    uses: chuongtruong/Test_env_var/.github/workflows/test_aprroval.yaml@Master
+    with:
+      github_token: ${{ secrets.GITHUB_TOKEN }}
+      branch: ${{ github.head_ref }}
